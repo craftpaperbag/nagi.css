@@ -2,6 +2,8 @@
 
 セマンティックなHTMLに、静けさを。日本語で読むことに最適化された、クラス不要のCSSフレームワーク。
 
+[サンプルを見る](https://craftpaperbag.github.io/nagi.css/)
+
 ---
 
 ## 特徴
