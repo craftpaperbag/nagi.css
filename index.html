@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nagi.css — 凪いだ余白のためのクラスレスCSS</title>
+  <meta name="description" content="セマンティックなHTMLに、静けさを。日本語に最適化された、クラスレスCSS。">
+  <link rel="stylesheet" href="nagi.css">
+</head>
+<body>
+
+  <header>
+    <h6>A classless CSS</h6>
+    <h1>nagi.css</h1>
+    <p>セマンティックなHTMLに、静けさを。<br>日本語で読むことに最適化された、クラス不要のCSS。</p>
+    <nav>
+      <ul>
+        <li><a href="#why">なぜ作ったのか</a></li>
+        <li><a href="#install">導入</a></li>
+        <li><a href="#elements">要素</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="why">
+      <h2>なぜ作ったのか</h2>
+      <p>多くのCSSフレームワークは、機能を<em>足す</em>ことで成立しています。色、影、角丸、アニメーション、グリッドシステム。けれど、読むためのページに、それらは本当に必要でしょうか。</p>
+      <p>nagi.css は、引き算で設計されたクラスレスCSSです。<code>&lt;link&gt;</code> を一行貼るだけで、セマンティックに書かれたHTMLが静かに整います。書く側は、正しいタグを選ぶことだけに集中できます。</p>
+      <blockquote>
+        <p>装飾で補強しないと伝わらない情報は、まだ十分に削られていない。</p>
+      </blockquote>
+    </section>
+
+    <hr>
+
+    <section id="install">
+      <h2>導入</h2>
+      <p>CDN経由で、一行。</p>
+      <pre><code>&lt;link rel="stylesheet" href="https://koharunagi.github.io/nagi.css/nagi.css"&gt;</code></pre>
+      <p>ローカルに置くなら、<code>nagi.css</code> をダウンロードして読み込んでください。</p>
+      <p>あとは、クラスを書かずにセマンティックなHTMLを書くだけです。<code>&lt;article&gt;</code>、<code>&lt;section&gt;</code>、<code>&lt;header&gt;</code>、<code>&lt;nav&gt;</code>、<code>&lt;footer&gt;</code>、見出し、段落、リスト。普通に書けば、普通に整います。</p>
+    </section>
+
+    <hr>
+
+    <section id="elements">
+      <h2>要素</h2>
+
+      <h3>見出し</h3>
+      <p>weight は 500 までしか使いません。大きさと余白だけで階層をつくります。</p>
+
+      <h3>段落とリンク</h3>
+      <p>段落の行長は <code>60ch</code>（日本語で約38文字）、読みやすさとページとしての存在感のバランスを取った幅です。リンクは<a href="#">太字＋下線</a>で明確に、<a href="https://example.com">ホバーで下線が太く</a>なります。</p>
+
+      <h3>番号付きリスト</h3>
+      <ol>
+        <li>壁打ち相手として使う</li>
+        <li>長文を要約させる</li>
+        <li>文章の推敲を頼む</li>
+      </ol>
+
+      <h3>箇条書き</h3>
+      <ul>
+        <li>色は文字と罫線のグレーだけ</li>
+        <li>カードで囲わず、罫線と余白で区切る</li>
+        <li>アニメーションは置かない</li>
+      </ul>
+
+      <h3>定義リスト</h3>
+      <dl>
+        <dt>classless</dt>
+        <dd>クラスを書かず、タグに直接スタイルを当てる設計。</dd>
+        <dt>semantic</dt>
+        <dd>意味に基づいたタグ選択で、構造と見た目を一致させる。</dd>
+        <dt>measure</dt>
+        <dd>読みやすい行長。nagi.cssの既定値は日本語向けに <code>40ch</code>。</dd>
+      </dl>
+
+      <h3>引用</h3>
+      <blockquote>
+        <p>道具は、自分の信号を濃くするために使う。</p>
+        <cite>こはるなぎ</cite>
+      </blockquote>
+
+      <h3>コード</h3>
+      <p>インラインコードは <code>max-width: 40ch</code> のように表示されます。ブロックは：</p>
+      <pre><code>article {
+  max-width: 40ch;
+  margin: 0 auto;
+}</code></pre>
+
+      <h3>キーボード</h3>
+      <p>保存は <kbd>⌘</kbd> + <kbd>S</kbd>、送信は <kbd>⌘</kbd> + <kbd>Enter</kbd>。</p>
+
+      <h3>テーブル</h3>
+      <table>
+        <thead>
+          <tr><th>変数</th><th>既定値</th><th>用途</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>--nagi-measure</code></td><td>60ch</td><td>日本語本文の行長</td></tr>
+          <tr><td><code>--nagi-measure-wide</code></td><td>75ch</td><td>英文・広めの行長</td></tr>
+          <tr><td><code>--nagi-line-height</code></td><td>1.8</td><td>本文の行間</td></tr>
+          <tr><td><code>--nagi-surface</code></td><td>#f5f3ec</td><td>コードブロック背景</td></tr>
+        </tbody>
+      </table>
+
+      <h3>フォーム</h3>
+      <form>
+        <label for="name">名前</label>
+        <input type="text" id="name" placeholder="こはるなぎ">
+        <label for="message">メッセージ</label>
+        <textarea id="message" placeholder="静かに整ったWebを。"></textarea>
+        <button type="button">送信</button>
+      </form>
+
+      <h3>水平罫線</h3>
+      <p>セクションの区切りには、細い罫線一本を。</p>
+      <hr>
+      <p>このように。</p>
+    </section>
+
+    <hr>
+
+    <section id="philosophy">
+      <h2>設計原則</h2>
+      <ol>
+        <li>クラスを書かせない。セマンティックに書くだけで整う。</li>
+        <li>日本語で読むことを前提に、行長と行間を設計する。</li>
+        <li>色は最小限、装飾は罫線と余白だけ。</li>
+        <li>ダークモードに自動対応。印刷にも対応。</li>
+        <li>CSS変数で上書き可能。思想は借りつつ、色は自分で。</li>
+      </ol>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>nagi.css — by <a href="https://craftpaperbag.com">craftpaperbag</a> · MIT License</p>
+  </footer>
+
+</body>
+</html>
