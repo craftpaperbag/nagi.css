@@ -1,0 +1,446 @@
+:root {
+  /* --- カラー（light） --- */
+  --nagi-bg:          #fdfdfc;
+  --nagi-fg:          #1a1a1a;
+  --nagi-fg-muted:    #595959;
+  --nagi-fg-subtle:   #8a8a8a;
+  --nagi-border:      #e5e3dc;
+  --nagi-border-strong: #c9c6bc;
+  --nagi-surface:     #f5f3ec;
+  --nagi-accent:      #1a1a1a;
+
+  /* --- タイポグラフィ --- */
+  --nagi-font-sans:
+    -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", Meiryo, system-ui, sans-serif;
+  --nagi-font-serif:
+    "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", "YuMincho",
+    "Georgia", serif;
+  --nagi-font-mono:
+    "SF Mono", "JetBrains Mono", "Menlo", "Consolas",
+    "Hiragino Sans", monospace;
+
+  /* --- レイアウト --- */
+  --nagi-measure:     60ch;  /* 日本語本文の読みやすい行長（日本語約38文字/行） */
+  --nagi-measure-wide: 75ch; /* 英文混在・広めの行長 */
+  --nagi-line-height: 1.8;
+  --nagi-line-height-tight: 1.4;
+
+  /* --- 余白の基本単位 --- */
+  --nagi-space-xs: 0.5rem;
+  --nagi-space-sm: 1rem;
+  --nagi-space-md: 1.5rem;
+  --nagi-space-lg: 2.5rem;
+  --nagi-space-xl: 4rem;
+
+  /* --- その他 --- */
+  --nagi-radius: 2px;
+  --nagi-border-width: 0.5px;
+  --nagi-transition: 150ms ease;
+}
+
+/* ------------------------------------------------------------
+   ダークモード
+   ------------------------------------------------------------ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nagi-bg:          #121211;
+    --nagi-fg:          #ecebe6;
+    --nagi-fg-muted:    #a8a6a0;
+    --nagi-fg-subtle:   #6b6a65;
+    --nagi-border:      #2a2a28;
+    --nagi-border-strong: #44443f;
+    --nagi-surface:     #1c1c1a;
+    --nagi-accent:      #ecebe6;
+  }
+}
+
+/* ------------------------------------------------------------
+   リセット（最小限）
+   ------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--nagi-bg);
+  color: var(--nagi-fg);
+  font-family: var(--nagi-font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: var(--nagi-line-height);
+  font-feature-settings: "palt" 1; /* 日本語のプロポーショナル詰め */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ------------------------------------------------------------
+   レイアウト
+   bodyをそのまま読み物コンテナとして使える
+   ------------------------------------------------------------ */
+body > header,
+body > main,
+body > footer,
+body > article,
+body > section,
+body > nav {
+  max-width: var(--nagi-measure);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--nagi-space-sm);
+  padding-right: var(--nagi-space-sm);
+}
+
+body > header { padding-top: var(--nagi-space-xl); padding-bottom: var(--nagi-space-lg); }
+body > main   { padding-top: var(--nagi-space-md); padding-bottom: var(--nagi-space-xl); }
+body > footer {
+  padding-top: var(--nagi-space-lg);
+  padding-bottom: var(--nagi-space-xl);
+  border-top: var(--nagi-border-width) solid var(--nagi-border);
+  color: var(--nagi-fg-muted);
+  font-size: 0.875rem;
+}
+
+/* 広めに取りたいときは <main class="wide"> で上書き可 */
+.wide { max-width: var(--nagi-measure-wide) !important; }
+
+/* ------------------------------------------------------------
+   見出し
+   weightは500まで。装飾で主張しない
+   ------------------------------------------------------------ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  line-height: var(--nagi-line-height-tight);
+  letter-spacing: -0.01em;
+  margin: var(--nagi-space-lg) 0 var(--nagi-space-sm);
+}
+
+h1 { font-size: 1.75rem; margin-top: 0; }
+h2 { font-size: 1.375rem; }
+h3 { font-size: 1.125rem; }
+h4 { font-size: 1rem; }
+h5 { font-size: 0.9375rem; color: var(--nagi-fg-muted); }
+h6 {
+  font-size: 0.75rem;
+  color: var(--nagi-fg-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
+/* ------------------------------------------------------------
+   本文要素
+   ------------------------------------------------------------ */
+p {
+  margin: 0 0 var(--nagi-space-sm);
+}
+
+a {
+  color: var(--nagi-fg);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--nagi-border-strong);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.5px;
+  transition: text-decoration-color var(--nagi-transition),
+              text-decoration-thickness var(--nagi-transition);
+}
+a:hover {
+  text-decoration-color: var(--nagi-fg);
+  text-decoration-thickness: 1.5px;
+}
+a:visited {
+  color: var(--nagi-fg-muted);
+}
+a:visited:hover {
+  color: var(--nagi-fg);
+}
+
+strong, b {
+  font-weight: 500;
+}
+
+em, i {
+  font-style: italic;
+}
+
+small {
+  font-size: 0.875rem;
+  color: var(--nagi-fg-muted);
+}
+
+mark {
+  background: var(--nagi-surface);
+  color: var(--nagi-fg);
+  padding: 0.05em 0.2em;
+}
+
+hr {
+  border: none;
+  border-top: var(--nagi-border-width) solid var(--nagi-border);
+  margin: var(--nagi-space-lg) 0;
+}
+
+/* ------------------------------------------------------------
+   リスト
+   ------------------------------------------------------------ */
+ul, ol {
+  margin: 0 0 var(--nagi-space-sm);
+  padding-left: 1.5em;
+}
+
+li {
+  margin-bottom: 0.25em;
+}
+
+li::marker {
+  color: var(--nagi-fg-subtle);
+}
+
+ol { font-variant-numeric: tabular-nums; }
+
+/* 定義リスト */
+dl {
+  margin: 0 0 var(--nagi-space-sm);
+  display: grid;
+  grid-template-columns: minmax(8ch, max-content) 1fr;
+  gap: 0.5em 1.5em;
+}
+dt {
+  color: var(--nagi-fg-muted);
+  font-size: 0.9375rem;
+}
+dd {
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   引用
+   ------------------------------------------------------------ */
+blockquote {
+  margin: var(--nagi-space-md) 0;
+  padding-left: 1.5em;
+  border-left: var(--nagi-border-width) solid var(--nagi-border-strong);
+  color: var(--nagi-fg-muted);
+  font-family: var(--nagi-font-serif);
+  font-style: italic;
+}
+
+blockquote p:last-child { margin-bottom: 0; }
+
+cite {
+  display: block;
+  margin-top: 0.5em;
+  font-size: 0.875rem;
+  font-style: normal;
+  color: var(--nagi-fg-subtle);
+}
+cite::before { content: "— "; }
+
+/* ------------------------------------------------------------
+   コード
+   ------------------------------------------------------------ */
+code, kbd, samp {
+  font-family: var(--nagi-font-mono);
+  font-size: 0.875em;
+}
+
+:not(pre) > code {
+  background: var(--nagi-surface);
+  padding: 0.1em 0.35em;
+  border-radius: var(--nagi-radius);
+}
+
+pre {
+  background: var(--nagi-surface);
+  padding: var(--nagi-space-sm);
+  border-radius: var(--nagi-radius);
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0 0 var(--nagi-space-sm);
+}
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+kbd {
+  background: var(--nagi-surface);
+  border: var(--nagi-border-width) solid var(--nagi-border-strong);
+  border-radius: var(--nagi-radius);
+  padding: 0.1em 0.4em;
+  font-size: 0.8125em;
+}
+
+/* ------------------------------------------------------------
+   テーブル
+   ------------------------------------------------------------ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 var(--nagi-space-sm);
+  font-size: 0.9375rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.6em 0.8em;
+  border-bottom: var(--nagi-border-width) solid var(--nagi-border);
+}
+
+th {
+  font-weight: 500;
+  color: var(--nagi-fg-muted);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+thead th {
+  border-bottom: var(--nagi-border-width) solid var(--nagi-border-strong);
+}
+
+/* ------------------------------------------------------------
+   フォーム要素
+   ------------------------------------------------------------ */
+label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--nagi-fg-muted);
+  margin-bottom: 0.25em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="date"],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  background: var(--nagi-bg);
+  color: var(--nagi-fg);
+  border: var(--nagi-border-width) solid var(--nagi-border-strong);
+  border-radius: var(--nagi-radius);
+  padding: 0.5em 0.75em;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: var(--nagi-space-sm);
+  transition: border-color var(--nagi-transition);
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--nagi-fg);
+}
+
+textarea { min-height: 6em; resize: vertical; }
+
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  background: transparent;
+  color: var(--nagi-fg);
+  border: var(--nagi-border-width) solid var(--nagi-border-strong);
+  border-radius: var(--nagi-radius);
+  padding: 0.5em 1.25em;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: border-color var(--nagi-transition), background var(--nagi-transition);
+}
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover {
+  border-color: var(--nagi-fg);
+  background: var(--nagi-surface);
+}
+button:active { transform: translateY(0.5px); }
+
+fieldset {
+  border: var(--nagi-border-width) solid var(--nagi-border);
+  border-radius: var(--nagi-radius);
+  padding: var(--nagi-space-sm);
+  margin: 0 0 var(--nagi-space-sm);
+}
+legend {
+  padding: 0 0.5em;
+  font-size: 0.875rem;
+  color: var(--nagi-fg-muted);
+}
+
+/* ------------------------------------------------------------
+   メディア
+   ------------------------------------------------------------ */
+img, video, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+figure {
+  margin: var(--nagi-space-md) 0;
+}
+figcaption {
+  margin-top: 0.5em;
+  font-size: 0.875rem;
+  color: var(--nagi-fg-muted);
+  text-align: center;
+}
+
+/* ------------------------------------------------------------
+   ナビゲーション（ヘッダー内想定）
+   ------------------------------------------------------------ */
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25em;
+}
+nav a {
+  text-decoration: none;
+  font-weight: 400;
+  color: var(--nagi-fg-muted);
+}
+nav a:hover {
+  color: var(--nagi-fg);
+  text-decoration: none;
+}
+nav a:visited {
+  color: var(--nagi-fg-muted);
+}
+
+/* ------------------------------------------------------------
+   アクセシビリティ
+   ------------------------------------------------------------ */
+:focus-visible {
+  outline: 2px solid var(--nagi-fg);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ------------------------------------------------------------
+   印刷
+   ------------------------------------------------------------ */
+@media print {
+  body { background: white; color: black; }
+  a { color: black; text-decoration: underline; }
+  nav, button { display: none; }
+}
