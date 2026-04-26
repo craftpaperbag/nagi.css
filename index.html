@@ -127,6 +127,22 @@
         </nav>
       </aside>
 
+      <h3>画像</h3>
+      <p><code>&lt;figure&gt;</code> と <code>&lt;figcaption&gt;</code> を使うと、キャプション付きの図版ブロックになります。</p>
+      <figure>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='420'%3E%3Crect width='800' height='420' fill='%23f5f3ec'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='13' fill='%238a8a8a'%3E800 %C3%97 420%3C/text%3E%3C/svg%3E" alt="プレースホルダー画像">
+        <figcaption>figure 要素内の img は width: 100%、border-radius: 2px が適用されます。</figcaption>
+      </figure>
+      <p>フォーマットの出し分けには <code>&lt;picture&gt;</code> と <code>&lt;source&gt;</code> を使います。ブラウザが対応している最初のフォーマットが選ばれ、どれも対応しない場合は <code>&lt;img&gt;</code> にフォールバックします。</p>
+      <pre><code>&lt;figure&gt;
+  &lt;picture&gt;
+    &lt;source srcset="photo.avif" type="image/avif"&gt;
+    &lt;source srcset="photo.webp" type="image/webp"&gt;
+    &lt;img src="photo.jpg" alt="説明文"&gt;
+  &lt;/picture&gt;
+  &lt;figcaption&gt;キャプション&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+
       <h3>水平罫線</h3>
       <p>セクションの区切りには、細い罫線一本を。</p>
       <hr>
