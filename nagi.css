@@ -402,26 +402,38 @@ figcaption {
 }
 
 /* ------------------------------------------------------------
-   ナビゲーション（ヘッダー内想定）
+   ナビゲーション
+   親要素の意味でレイアウトが決まる。クラスは不要。
    ------------------------------------------------------------ */
 nav ul {
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25em;
+  margin: 0;
 }
+
 nav a {
   text-decoration: none;
-  font-weight: 400;
   color: var(--nagi-fg-muted);
+  font-weight: 400;
+  transition: color var(--nagi-transition);
 }
 nav a:hover {
   color: var(--nagi-fg);
-  text-decoration: none;
 }
-nav a:visited {
-  color: var(--nagi-fg-muted);
+
+/* header・body直下：横並びリンク群 */
+header nav ul,
+body > nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5em;
+}
+
+/* aside：縦並びリンク（目次・サブナビ） */
+aside nav a {
+  display: block;
+  padding: 0.3em 0;
+  font-size: 0.9375rem;
 }
 
 /* ------------------------------------------------------------
